@@ -1,4 +1,4 @@
-package com.example.animdemo.util
+package com.cornellappdev.introandroid.lecturedemos.lec3.util
 
 import kotlin.random.Random
 

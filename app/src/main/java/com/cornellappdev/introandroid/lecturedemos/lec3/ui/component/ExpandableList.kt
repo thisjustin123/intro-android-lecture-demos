@@ -1,4 +1,4 @@
-package com.example.animdemo.ui.component
+package com.cornellappdev.introandroid.lecturedemos.lec3.ui.component
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.animateContentSize
@@ -9,9 +9,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,7 +23,7 @@ fun ExpandableList(
     open: Boolean,
     items: List<String>,
     onOpen: () -> Unit,
-    onRandomize: () -> Unit,
+    onRandomize: (() -> Unit)? = null,
 ) {
     Column(modifier = Modifier
         .padding(start = 10.dp, end = 10.dp)
@@ -53,8 +51,10 @@ fun ExpandableList(
                 }
             }
 
-            Button(onClick = { onRandomize() }) {
-                Text("Randomize!")
+            if (onRandomize != null) {
+                Button(onClick = { onRandomize() }) {
+                    Text("Randomize!")
+                }
             }
         }
     }

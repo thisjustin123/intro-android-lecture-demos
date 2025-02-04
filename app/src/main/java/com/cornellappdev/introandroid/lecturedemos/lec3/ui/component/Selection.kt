@@ -1,4 +1,4 @@
-package com.example.animdemo.ui.component
+package com.cornellappdev.introandroid.lecturedemos.lec3.ui.component
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.BorderStroke
@@ -12,6 +12,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -26,7 +27,7 @@ fun Selection(selected: Boolean, onSelect: () -> Unit) {
 
     Column(modifier = Modifier.clickable(
         indication = null,
-        interactionSource = MutableInteractionSource()
+        interactionSource = remember { MutableInteractionSource() }
     ) {
         onSelect()
     }) {

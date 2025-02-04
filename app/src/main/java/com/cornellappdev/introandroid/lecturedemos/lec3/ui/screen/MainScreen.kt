@@ -1,4 +1,4 @@
-package com.example.animdemo.ui.screen
+package com.cornellappdev.introandroid.lecturedemos.lec3.ui.screen
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
@@ -29,20 +29,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.animdemo.ui.component.ExpandableList
-import com.example.animdemo.ui.component.Selection
-import com.example.animdemo.util.randomSelect
+import com.cornellappdev.introandroid.lecturedemos.lec3.ui.component.ExpandableList
+import com.cornellappdev.introandroid.lecturedemos.lec3.ui.component.Selection
+import com.cornellappdev.introandroid.lecturedemos.lec3.util.randomSelect
 
 
 @Composable
 fun MainScreen() {
     var select by remember { mutableIntStateOf(0) }
 
-    var open by remember { mutableStateOf(false) }
+    var open1 by remember { mutableStateOf(false) }
+    var items1 by remember { mutableStateOf(randomSelect()) }
 
-    var items by remember { mutableStateOf(randomSelect()) }
-
-    var randomSize by remember { mutableFloatStateOf(32f) }
+    var open2 by remember { mutableStateOf(false) }
+    var items2 by remember { mutableStateOf(randomSelect()) }
 
     Column(
         modifier = Modifier
@@ -50,6 +50,8 @@ fun MainScreen() {
             .background(Color.White)
             .verticalScroll(rememberScrollState())
     ) {
+        Spacer(modifier = Modifier.height(36.dp))
+
         Text(
             text = "Demo 1: Radio Buttons",
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
@@ -76,39 +78,35 @@ fun MainScreen() {
             fontSize = 32.sp
         )
 
-        // Content Expansion Demo!
         ExpandableList(
-            open = open,
-            items = items,
+            open = open1,
+            items = items1,
             onOpen = {
-                open = !open
+                open1 = !open1
             },
-            onRandomize = {
-                items = randomSelect()
-            }
         )
 
         HorizontalLine()
 
-        Column(modifier = Modifier
-            .padding(start = 10.dp, end = 10.dp)
-            .border(2.dp, Color.Black, RoundedCornerShape(8.dp))
-            .fillMaxWidth()
-            .padding(10.dp)
-            // TODO: Add a modifier `animateContentSize` to animate the size of the Column!
-            .animateContentSize()
-            .clickable(
-                indication = null,
-                interactionSource = remember { MutableInteractionSource() }
-            ) {
-                randomSize = if (randomSize == 32f) 64f else 32f
+        Text(
+            text = "Demo 3: Randomizing List",
+            modifier = Modifier
+                .padding(horizontal = 16.dp)
+                .padding(bottom = 8.dp),
+            fontSize = 32.sp
+        )
+
+        // Content Expansion Demo!
+        ExpandableList(
+            open = open2,
+            items = items2,
+            onOpen = {
+                open2 = !open2
+            },
+            onRandomize = {
+                items2 = randomSelect()
             }
-        ) {
-            Text(
-                text = "Tap to change size!",
-                modifier = Modifier.height(randomSize.dp)
-            )
-        }
+        )
 
         Spacer(modifier = Modifier.height(120.dp))
     }

@@ -41,7 +41,7 @@ fun Selection(selected: Boolean, onSelect: () -> Unit) {
                 modifier = Modifier.size(40.dp)
             ) {}
             Surface(
-                shape = CircleShape, color = Color.Black, modifier = Modifier.size(animatedSize.dp)
+                shape = CircleShape, color = Color.Black, modifier = Modifier.size(regularSize.dp)
             ) {}
         }
     }

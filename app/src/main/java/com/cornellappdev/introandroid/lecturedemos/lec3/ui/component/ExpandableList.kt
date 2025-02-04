@@ -31,7 +31,7 @@ fun ExpandableList(
         .fillMaxWidth()
         .padding(10.dp)
         // TODO: Add a modifier `animateContentSize` to animate the size of the Column!
-        .animateContentSize()
+//        .animateContentSize()
         .clickable {
             onOpen()
         }
@@ -43,13 +43,13 @@ fun ExpandableList(
             Spacer(Modifier.height(8.dp))
 
             // TODO: Add an AnimatedContent to pop in & out the new items!
-            AnimatedContent(targetState = items, label = "Swap") { displayItems ->
+//            AnimatedContent(targetState = items, label = "Swap") { items ->
                 Column {
-                    displayItems.forEach {
+                    items.forEach {
                         Text(it, modifier = Modifier.padding(start = 8.dp, bottom = 10.dp))
                     }
                 }
-            }
+//            }
 
             if (onRandomize != null) {
                 Button(onClick = { onRandomize() }) {

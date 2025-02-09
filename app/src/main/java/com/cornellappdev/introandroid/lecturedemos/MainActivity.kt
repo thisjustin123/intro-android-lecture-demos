@@ -4,13 +4,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import com.cornellappdev.introandroid.lecturedemos.lec4.BankHistoryScreen
 import com.cornellappdev.introandroid.lecturedemos.ui.theme.LectureDemosTheme
-import com.cornellappdev.introandroid.lecturedemos.lec3.ui.screen.MainScreen
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,24 +16,11 @@ class MainActivity : ComponentActivity() {
         setContent {
             LectureDemosTheme {
                 // Lecture 3
-                MainScreen()
+//                MainScreen()
+
+                // Lecture 4
+                BankHistoryScreen()
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    LectureDemosTheme {
-        Greeting("Android")
     }
 }

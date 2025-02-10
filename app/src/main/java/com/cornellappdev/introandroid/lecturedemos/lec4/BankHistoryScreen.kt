@@ -54,7 +54,7 @@ private fun ScreenContent(
             text = "Bank History",
             fontSize = 32.sp,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(top = 16.dp)
+            modifier = Modifier.padding(top = 64.dp)
         )
         Text(
             text = "Welcome Back, ${uiState.username}!",
@@ -132,7 +132,9 @@ private fun LoadedContent(uiState: BankHistoryViewModel.BankHistoryUIState) {
 
 @Composable
 private fun LoadingContent() {
-    Column {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         Spacer(Modifier.weight(1f))
         Text(
             text = "Loading...",

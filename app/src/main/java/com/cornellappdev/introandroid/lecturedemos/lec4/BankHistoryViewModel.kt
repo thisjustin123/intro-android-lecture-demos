@@ -20,18 +20,18 @@ class BankHistoryViewModel @Inject constructor(
         val transactions: List<Expense>,
         val loading: Boolean = true,
     ) {
+        val balance
+            get() = transactions.sumOf { it.amount.toDouble() }.toFloat() + 500f
+
         // Red if most recent transaction is negative, green if positive
         val balanceColor
             get() = transactions.getOrNull(0)?.amount.let { mostRecentTransaction ->
-                if (mostRecentTransaction != null && mostRecentTransaction < 0) {
+                if (balance < 0) {
                     Color.Red
                 } else {
                     Color.Green
                 }
             }
-
-        val balance
-            get() = transactions.sumOf { it.amount.toDouble() }.toFloat() + 500f
 
         val balanceText
             get() = "$${String.format("%.2f", balance)}"
@@ -65,5 +65,9 @@ class BankHistoryViewModel @Inject constructor(
                 loading = false
             )
         }
+    }
+
+    init {
+        onRefresh()
     }
 }

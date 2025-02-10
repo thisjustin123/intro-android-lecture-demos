@@ -23,7 +23,7 @@ class BankRepository @Inject constructor() {
         currentTransactions = listOf(
             BankHistoryViewModel.Expense(
                 randomStore,
-                "2022-01-01",
+                "2025-02-10",
                 randomCharge
             )
         ) + currentTransactions
@@ -39,7 +39,7 @@ class BankRepository @Inject constructor() {
 
     suspend fun getTransactions(): List<BankHistoryViewModel.Expense> {
         // Simulate a wait time...
-        delay(500)
+        delay(1000)
         return currentTransactions
     }
 }

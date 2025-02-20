@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.cornellappdev.introandroid.lecturedemos.lec4.BankHistoryScreen
+import com.cornellappdev.introandroid.lecturedemos.lec5.TickerScreen
 import com.cornellappdev.introandroid.lecturedemos.ui.theme.LectureDemosTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,7 +20,10 @@ class MainActivity : ComponentActivity() {
 //                MainScreen()
 
                 // Lecture 4
-                BankHistoryScreen()
+//                BankHistoryScreen()
+
+                // Lecture 5
+                TickerScreen()
             }
         }
     }

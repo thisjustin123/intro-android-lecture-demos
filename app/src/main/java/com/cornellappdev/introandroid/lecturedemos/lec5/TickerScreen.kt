@@ -1,14 +1,22 @@
 package com.cornellappdev.introandroid.lecturedemos.lec5
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -22,16 +30,48 @@ fun TickerScreen(
     // TODO: Why isn't this causing a load?
     val map = tickerViewModel.mapFlow.collectAsState().value
 
-    LazyColumn(modifier = Modifier.systemBarsPadding()) {
-        itemsIndexed(map.entries.toTypedArray()) { index, entry ->
-            TickerRow(ticker = entry.key, price = entry.value)
+    val scrollState = rememberLazyListState()
+    val scrollEvent = tickerViewModel.scrollEventFlow.collectAsState().value
 
-            Spacer(
+    LaunchedEffect(scrollEvent) {
+        scrollEvent?.consumeSuspend {
+            scrollState.animateScrollToItem(0)
+        }
+    }
+
+    Box {
+        LazyColumn(
+            modifier = Modifier.systemBarsPadding(),
+            state = scrollState
+        ) {
+            itemsIndexed(map.entries.toTypedArray()) { index, entry ->
+                TickerRow(ticker = entry.key, price = entry.value)
+
+                Spacer(
+                    modifier = Modifier
+                        .background(Color.Gray)
+                        .height(1.dp)
+                        .fillMaxWidth()
+                )
+            }
+        }
+
+        AnimatedVisibility(
+            visible = scrollState.firstVisibleItemIndex > 0,
+            modifier = Modifier.align(Alignment.BottomCenter)
+        ) {
+            Button(
                 modifier = Modifier
-                    .background(Color.Gray)
-                    .height(1.dp)
-                    .fillMaxWidth()
-            )
+                    .padding(bottom = 16.dp),
+                onClick = {
+                    tickerViewModel.onScrollToTopClicked()
+                }
+            ) {
+                Text(
+                    text = "Back to Top",
+                    modifier = Modifier.padding(6.dp)
+                )
+            }
         }
     }
 

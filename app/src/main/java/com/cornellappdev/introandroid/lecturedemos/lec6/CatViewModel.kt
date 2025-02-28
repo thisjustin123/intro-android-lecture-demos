@@ -1,5 +1,6 @@
 package com.cornellappdev.introandroid.lecturedemos.lec6
 
+import android.util.Log
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -33,36 +34,65 @@ class CatViewModel @Inject constructor(
         val query: String,
         val imageData: ImageBitmap? = null
     ) {
+        val titleText: String
+            get() {
+                if (loading) {
+                    return "Loading..."
+                } else if (cat != null) {
+                    return cat.name
+                }
+                return "Search for a Cat!"
+            }
+
         val buttonEnabled
             get() = cat != null && !loading
     }
 
+    fun onQueryChange(query: String) {
+        _uiStateFlow.value = _uiStateFlow.value.copy(query = query)
+    }
+
     fun onSubmit() {
+        val query = _uiStateFlow.value.query
         _uiStateFlow.value = _uiStateFlow.value.copy(
             loading = true,
-            query = ""
+            query = "",
+            imageData = null
         )
 
         viewModelScope.launch {
             // Even though this function hangs for a second, the UI doesn't freeze.
             //  And we can continue coding in this block like normal...
-            val cats = retrofitInstance.catsApiService.getCats(_uiStateFlow.value.query)
+            try {
+                val cats = retrofitInstance.catsApiService.getCats(
+                    name = query
+                )
 
-            if (cats.isEmpty()) {
+                if (cats.isEmpty()) {
+                    _uiStateFlow.value = _uiStateFlow.value.copy(
+                        cat = null,
+                        loading = false
+                    )
+                    return@launch
+                }
+
+                _uiStateFlow.value = _uiStateFlow.value.copy(
+                    cat = cats[0],
+                    loading = false
+                )
+
+                val bitmap = coilRepository.loadImageFromURL(cats[0].imageLink)
+
+                _uiStateFlow.value = _uiStateFlow.value.copy(
+                    imageData = bitmap
+                )
+            } catch (e: Exception) {
+                Log.e("CatViewModel", "Failed to fetch cats:", e)
                 _uiStateFlow.value = _uiStateFlow.value.copy(
                     cat = null,
                     loading = false
                 )
-                return@launch
             }
-
-            _uiStateFlow.value = _uiStateFlow.value.copy(
-                cat = cats[0],
-                loading = false
-            )
-
-            val bitmap = coilRepository.loadImageFromURL(cats[0].imageLink)
-
         }
     }
 }

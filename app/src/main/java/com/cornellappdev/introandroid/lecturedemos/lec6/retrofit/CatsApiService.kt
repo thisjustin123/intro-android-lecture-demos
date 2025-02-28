@@ -8,7 +8,8 @@ interface CatsApiService {
 
     @GET("cats")
     suspend fun getCats(
-        @Header("X-Api-Key") apiKey: String,
+        // Do NOT expose your API key like this. This is just for demo.
+        @Header("X-Api-Key") apiKey: String = "jZPKNNR02mY2ekeVxMUBmA==xZTwG2O6OYa4BuXA",
         @Query("name") name: String? = null,
     ): List<Cat>
 }

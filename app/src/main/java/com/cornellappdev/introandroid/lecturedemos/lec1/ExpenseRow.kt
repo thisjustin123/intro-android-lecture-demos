@@ -1,11 +1,20 @@
 package com.cornellappdev.introandroid.lecturedemos.lec1
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import java.util.Locale
 import kotlin.math.absoluteValue
 
@@ -21,51 +30,69 @@ import kotlin.math.absoluteValue
 fun ExpenseRow(
     title: String,
     date: String,
-    amount: Double
+    amount: Double? = null,
 ) {
     // 2.0 -> $2.00
-    val formattedAmount = String.format(Locale.US, "%.2f", amount.absoluteValue)
+    val formattedAmount = String.format(Locale.US, "%.2f", amount?.absoluteValue)
     val amountText =
-        if (amount < 0) {
+        if (amount != null && amount < 0) {
             "-$$formattedAmount"
         } else {
             "+$$formattedAmount"
         }
 
     // TODO: Use modifiers and arguments to make this look nice!
-    //  * Make the background White!
-    //  * Make the title text bold and larger!
-    //  * Make everything vertically centered!
-    //  * Make the row take up the full width!
-    //  * Add padding to make it look nice!
     //  * (Anything else...?)
-    Row {
+    Row(
+        modifier = Modifier
+            .background(Color.White)
+            .fillMaxWidth()
+            .padding(16.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
         Column {
             Text(
-                text = title
+                text = title,
+                fontWeight = FontWeight.Bold,
+                fontSize = 24.sp
             )
             Text(
                 text = date
             )
         }
 
-        Text(
-            text = amountText,
-            color = if (amount < 0) {
-                Color.Red
-            } else {
-                Color.Green
-            }
-        )
+        Spacer(Modifier.weight(1f))
+
+        if (amount != null) {
+            Text(
+                text = amountText,
+                color = if (amount < 0) {
+                    Color.Red
+                } else {
+                    Color.Green
+                },
+                )
+        }
     }
 }
 
 @Preview
 @Composable
 fun ExpenseRowPreview() {
-    ExpenseRow(
-        title = "Groceries",
-        date = "2022-01-01",
-        amount = 100.0
-    )
+    Column {
+        ExpenseRow(
+            title = "Groceries",
+            date = "2022-01-01",
+            amount = -100.0
+        )
+        ExpenseRow(
+            title = "Groceries",
+            date = "2022-01-01",
+            amount = +100.0
+        )
+        ExpenseRow(
+            title = "Groceries",
+            date = "2022-01-01"
+        )
+    }
 }

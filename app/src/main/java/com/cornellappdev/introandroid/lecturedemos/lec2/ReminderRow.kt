@@ -52,8 +52,8 @@ fun ReminderRow(
 @Composable
 private fun ReminderRowPreview() {
     Column {
-    ReminderRow("Reminder", Importance.HIGH)
-    ReminderRow("Low Reminder", Importance.LOW)
-    ReminderRow("Medium Reminder", Importance.MEDIUM)
-        }
+        ReminderRow("Reminder", Importance.HIGH)
+        ReminderRow("Low Reminder", Importance.LOW)
+        ReminderRow("Medium Reminder", Importance.MEDIUM)
+    }
 }

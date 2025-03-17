@@ -2,6 +2,7 @@ package com.cornellappdev.introandroid.lecturedemos.lec2
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -25,7 +26,7 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun ReminderRow(
     title: String,
-    importance: String
+    importance: Importance
 ) {
     Row(
         modifier = Modifier
@@ -41,14 +42,18 @@ fun ReminderRow(
         )
 
         Text(
-            text = importance,
-            color = Color.Red
+            text = importance.text,
+            color = importance.color,
         )
     }
 }
 
 @Preview
 @Composable
-fun ReminderRowPreview() {
-    ReminderRow("Reminder", "High")
+private fun ReminderRowPreview() {
+    Column {
+    ReminderRow("Reminder", Importance.HIGH)
+    ReminderRow("Low Reminder", Importance.LOW)
+    ReminderRow("Medium Reminder", Importance.MEDIUM)
+        }
 }

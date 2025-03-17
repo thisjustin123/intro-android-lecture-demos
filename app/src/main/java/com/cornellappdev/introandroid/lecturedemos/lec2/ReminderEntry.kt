@@ -22,9 +22,9 @@ import androidx.compose.ui.unit.dp
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ReminderEntry() {
-    // TODO 1: Add an onClick!
+    // TODO 2: Add an onClick!
     val sliderState = remember {
-        SliderState(steps = 4, valueRange = 0f..3f)
+        SliderState(steps = 1, valueRange = 0f..2f)
     }
 
     Column(
@@ -74,8 +74,10 @@ fun ReminderEntry() {
 
 @Preview
 @Composable
-fun ReminderEntryPreview() {
-    // TODO 2: Add a usage of `ReminderRow` to preview!
+private fun ReminderEntryPreview() {
+    // TODO 2: Add a usage of `ReminderRow`!
+    //  If a reminder has been given, render a row.
+    //  (If not, render nothing.)
     ReminderEntry()
 
     // TODO 3: Add a lazy column that can render MANY `ReminderRow`s!

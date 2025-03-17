@@ -40,6 +40,7 @@ fun SimpleCounterRow() {
             onClick = {
                 // TODO 1: Update count!
                 //  Would this still work if count wasn't a mutableStateOf?
+                count += 1
             },
         ) {
             Text(text = "Add")

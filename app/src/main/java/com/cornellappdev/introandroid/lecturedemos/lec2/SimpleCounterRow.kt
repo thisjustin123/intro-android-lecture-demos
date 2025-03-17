@@ -39,6 +39,7 @@ fun SimpleCounterRow() {
         Button(
             onClick = {
                 // TODO 1: Update count!
+                //  Would this still work if count wasn't a mutableStateOf?
             },
         ) {
             Text(text = "Add")

@@ -29,7 +29,7 @@ import com.cornellappdev.introandroid.lecturedemos.lec3.util.randomSelect
 
 
 @Composable
-fun MainScreen() {
+fun AnimationScreen() {
     var select by remember { mutableIntStateOf(0) }
 
     var open1 by remember { mutableStateOf(false) }
@@ -109,7 +109,7 @@ fun MainScreen() {
 @Preview
 @Composable
 fun MainScreenPreview() {
-    MainScreen()
+    AnimationScreen()
 }
 
 @Composable

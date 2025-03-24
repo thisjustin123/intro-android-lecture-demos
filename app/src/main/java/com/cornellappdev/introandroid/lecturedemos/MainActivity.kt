@@ -18,7 +18,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             LectureDemosTheme {
                 // Lecture 3
-//                MainScreen()
+//                AnimationScreen()
 
                 // Lecture 4
 //                BankHistoryScreen()

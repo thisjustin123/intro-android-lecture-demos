@@ -1,5 +1,7 @@
 package com.cornellappdev.introandroid.lecturedemos.lec3.ui.component
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -9,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,7 +34,7 @@ fun ExpandableList(
         .fillMaxWidth()
         .padding(10.dp)
         // TODO: Add a modifier `animateContentSize` to animate the size of the Column!
-//        .animateContentSize()
+        .animateContentSize()
         .clickable(
             indication = null,
             interactionSource = remember { MutableInteractionSource() }
@@ -46,13 +49,13 @@ fun ExpandableList(
             Spacer(Modifier.height(8.dp))
 
             // TODO: Add an AnimatedContent to pop in & out the new items!
-//            AnimatedContent(targetState = items, label = "Swap") { items ->
-            Column {
-                items.forEach {
-                    Text(it, modifier = Modifier.padding(start = 8.dp, bottom = 10.dp))
+            AnimatedContent(targetState = items) { items ->
+                Column {
+                    items.forEach {
+                        Text(it, modifier = Modifier.padding(start = 8.dp, bottom = 10.dp))
+                    }
                 }
             }
-//            }
 
             if (onRandomize != null) {
                 Button(onClick = { onRandomize() }) {

@@ -1,6 +1,7 @@
 package com.cornellappdev.introandroid.lecturedemos.lec3.ui.component
 
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -23,7 +24,7 @@ fun Selection(selected: Boolean, onSelect: () -> Unit) {
     val regularSize = if (selected) 32f else 0f
 
     // TODO: Swap use of regularSize to animatedSize and see what happens!
-    val animatedSize by animateFloatAsState(targetValue = regularSize, label = "Animate Selection")
+    val animatedSize by animateFloatAsState(targetValue = regularSize)
 
     Column(modifier = Modifier.clickable(
         indication = null,
@@ -41,7 +42,7 @@ fun Selection(selected: Boolean, onSelect: () -> Unit) {
                 modifier = Modifier.size(40.dp)
             ) {}
             Surface(
-                shape = CircleShape, color = Color.Black, modifier = Modifier.size(regularSize.dp)
+                shape = CircleShape, color = Color.Black, modifier = Modifier.size(animatedSize.dp)
             ) {}
         }
     }

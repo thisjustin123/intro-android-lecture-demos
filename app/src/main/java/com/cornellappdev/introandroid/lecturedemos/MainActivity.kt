@@ -21,13 +21,13 @@ class MainActivity : ComponentActivity() {
 //                AnimationScreen()
 
                 // Lecture 4
-//                BankHistoryScreen()
+                BankHistoryScreen()
 
                 // Lecture 5
 //                TickerScreen()
 
                 // Lecture 6
-                CatScreen()
+//                CatScreen()
             }
         }
     }

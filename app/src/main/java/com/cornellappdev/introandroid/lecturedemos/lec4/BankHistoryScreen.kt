@@ -82,7 +82,8 @@ private fun ScreenContent(
             onClick = {
                 onRefresh()
             },
-            modifier = Modifier.padding(bottom = 16.dp)
+            modifier = Modifier.padding(bottom = 16.dp),
+            enabled = uiState.refreshEnabled
         ) {
             Text(
                 text = "Refresh"

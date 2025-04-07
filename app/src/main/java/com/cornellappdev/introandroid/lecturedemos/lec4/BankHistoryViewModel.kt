@@ -37,6 +37,8 @@ class BankHistoryViewModel @Inject constructor(
             get() = "$${String.format("%.2f", balance)}"
 
         // TODO: Add a property that disables the refresh button when loading!
+        val refreshEnabled
+            get() = !loading
     }
 
     data class Expense(

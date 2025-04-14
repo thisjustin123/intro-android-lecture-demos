@@ -36,6 +36,12 @@ fun TickerScreen(
     val scrollState = rememberLazyListState()
 
     // TODO: Write a LaunchedEffect to consume the UIEvent, then scroll to the top!
+    val scrollEvent = uiState.scrollEvent
+    LaunchedEffect(scrollEvent) {
+        scrollEvent?.consumeSuspend {
+            scrollState.animateScrollToItem(0)
+        }
+    }
 
     Box {
         LazyColumn(
@@ -43,9 +49,12 @@ fun TickerScreen(
             state = scrollState
         ) {
             itemsIndexed(stocks.entries.toTypedArray()) { index, entry ->
-                TickerRow(ticker = entry.key, price = entry.value,
+                TickerRow(
+                    ticker = entry.key,
+                    price = entry.value,
                     onAddClick = { tickerViewModel.onTickerButtonClick(entry.key, 1.0) },
-                    onSubtractClick = { tickerViewModel.onTickerButtonClick(entry.key, -1.0) })
+                    onSubtractClick = { tickerViewModel.onTickerButtonClick(entry.key, -1.0) }
+                )
 
                 Spacer(
                     modifier = Modifier

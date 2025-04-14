@@ -14,8 +14,9 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -31,13 +32,8 @@ fun TickerScreen(
     val map = tickerViewModel.mapFlow.collectAsState().value
 
     val scrollState = rememberLazyListState()
-    val scrollEvent = tickerViewModel.scrollEventFlow.collectAsState().value
 
-    LaunchedEffect(scrollEvent) {
-        scrollEvent?.consumeSuspend {
-            scrollState.animateScrollToItem(0)
-        }
-    }
+    // TODO: Write a LaunchedEffect to consume the UIEvent, then scroll to the top!
 
     Box {
         LazyColumn(
@@ -57,7 +53,7 @@ fun TickerScreen(
         }
 
         AnimatedVisibility(
-            visible = scrollState.firstVisibleItemIndex > 0,
+            visible = remember { derivedStateOf { scrollState.firstVisibleItemIndex } }.value > 0,
             modifier = Modifier.align(Alignment.BottomCenter)
         ) {
             Button(
@@ -74,5 +70,4 @@ fun TickerScreen(
             }
         }
     }
-
 }

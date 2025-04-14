@@ -45,7 +45,7 @@ fun TickerRow(
         )
 
         Row(verticalAlignment = Alignment.CenterVertically) {
-            // TODO: Use TickerText for improved animations!
+            // (Optional) TODO: Use TickerText for improved animations!
             Text(text = "\$${String.format(Locale.US, "%.2f", priceState.doubleValue)}")
 
             Spacer(modifier = Modifier.size(8.dp))

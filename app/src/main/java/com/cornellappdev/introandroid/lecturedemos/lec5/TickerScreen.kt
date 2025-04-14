@@ -1,6 +1,8 @@
 package com.cornellappdev.introandroid.lecturedemos.lec5
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
@@ -67,7 +69,9 @@ fun TickerScreen(
 
         AnimatedVisibility(
             visible = remember { derivedStateOf { scrollState.firstVisibleItemIndex } }.value > 0,
-            modifier = Modifier.align(Alignment.BottomCenter)
+            modifier = Modifier.align(Alignment.BottomCenter),
+            enter = fadeIn(),
+            exit = fadeOut()
         ) {
             Button(
                 modifier = Modifier

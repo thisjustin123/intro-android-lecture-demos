@@ -28,10 +28,10 @@ import java.util.Locale
 fun TickerRow(
     ticker: String,
     price: Double,
+    onAddClick: () -> Unit,
+    onSubtractClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val priceState = remember { mutableDoubleStateOf(price) }
-
     Row(
         modifier = modifier
             .padding(16.dp)
@@ -46,7 +46,7 @@ fun TickerRow(
 
         Row(verticalAlignment = Alignment.CenterVertically) {
             // (Optional) TODO: Use TickerText for improved animations!
-            Text(text = "\$${String.format(Locale.US, "%.2f", priceState.doubleValue)}")
+            Text(text = "\$${String.format(Locale.US, "%.2f", price)}")
 
             Spacer(modifier = Modifier.size(8.dp))
 
@@ -54,7 +54,7 @@ fun TickerRow(
             ChangeButton(
                 text = "+",
                 color = Color.Green,
-                onClick = { priceState.value += 1.0 }
+                onClick = onAddClick
             )
 
             Spacer(modifier = Modifier.size(8.dp))
@@ -63,7 +63,7 @@ fun TickerRow(
             ChangeButton(
                 text = "-",
                 color = Color.Red,
-                onClick = { priceState.value -= 1.0 }
+                onClick = onSubtractClick
             )
         }
     }
@@ -99,6 +99,6 @@ private fun ChangeButton(
 @Composable
 fun TickerRowPreview() {
     Box(modifier = Modifier.background(Color.White)) {
-        TickerRow(ticker = "AAPL", price = 100.0)
+        TickerRow(ticker = "AAPL", price = 100.0, onAddClick = {}, onSubtractClick = {})
     }
 }

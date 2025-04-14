@@ -14,6 +14,7 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
@@ -41,7 +42,11 @@ fun TickerScreen(
             state = scrollState
         ) {
             itemsIndexed(map.entries.toTypedArray()) { index, entry ->
-                TickerRow(ticker = entry.key, price = entry.value)
+                TickerRow(
+                    ticker = entry.key, price = entry.value,
+                    onAddClick = { tickerViewModel.onTickerButtonClick(entry.key, 1.0) },
+                    onSubtractClick = { tickerViewModel.onTickerButtonClick(entry.key, -1.0) }
+                )
 
                 Spacer(
                     modifier = Modifier

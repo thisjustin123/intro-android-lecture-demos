@@ -51,7 +51,8 @@ class TickerViewModel : ViewModel() {
     suspend fun loadTickerValues() {
         val stocks = uiStateFlow.value.stocks
         for (ticker in stocks.keys) {
-            uiStateFlow.value = uiStateFlow.value.copy(stocks = stocks.toMutableMap().apply {
+            val newStocks = uiStateFlow.value.stocks
+            uiStateFlow.value = uiStateFlow.value.copy(stocks = newStocks.toMutableMap().apply {
                 TickerRepository.getTickerValue(ticker).let { this[ticker] = it }
             })
         }

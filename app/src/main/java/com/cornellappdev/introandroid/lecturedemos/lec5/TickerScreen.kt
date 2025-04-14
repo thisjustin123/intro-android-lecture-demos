@@ -29,7 +29,8 @@ fun TickerScreen(
     tickerViewModel: TickerViewModel = viewModel()
 ) {
     // TODO: Why isn't this causing a load?
-    val map = tickerViewModel.mapFlow.collectAsState().value
+    val uiState = tickerViewModel.uiStateFlow.collectAsState().value
+    val stocks = uiState.stocks
 
     val scrollState = rememberLazyListState()
 
@@ -40,7 +41,7 @@ fun TickerScreen(
             modifier = Modifier.systemBarsPadding(),
             state = scrollState
         ) {
-            itemsIndexed(map.entries.toTypedArray()) { index, entry ->
+            itemsIndexed(stocks.entries.toTypedArray()) { index, entry ->
                 TickerRow(ticker = entry.key, price = entry.value)
 
                 Spacer(

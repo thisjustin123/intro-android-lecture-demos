@@ -45,7 +45,7 @@ class CatViewModel @Inject constructor(
             }
 
         val buttonEnabled
-            get() = cat != null && !loading
+            get() = !loading
     }
 
     fun onQueryChange(query: String) {
@@ -60,10 +60,19 @@ class CatViewModel @Inject constructor(
             imageData = null
         )
 
+        // TODO (1):
+        //  1. Use `FakeCatNetworkingRepository` to fetch cats... but you need a coroutine!
+        //  2. Use `coilRepository` to load the image...
+        //  3. Error handle--super important with networking!
+        //  4. Update the UI if a success!
+
+        // TODO (2):
+        //  Use the actual retrofit code, instead! (And finish the retrofit code in CatsApiService.kt)
+
         viewModelScope.launch {
-            // Even though this function hangs for a second, the UI doesn't freeze.
-            //  And we can continue coding in this block like normal...
             try {
+                // Even though our networking functions hang for a bit, the UI doesn't freeze.
+                //  And we can continue coding in this block like normal...
                 val cats = retrofitInstance.catsApiService.getCats(
                     name = query
                 )

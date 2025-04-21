@@ -5,6 +5,11 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query
 
+// TODO: Add the getCats() endpoint using the following info:
+//  - It is at "https://api.api-ninjas.com/v1/cats"
+//  - It has a "name" query parameter
+//  - It has an "X-Api-Key" header
+//  - It returns a list of cats... the JSON of which you can find on the website!
 interface CatsApiService {
 
     @GET("cats")
@@ -15,6 +20,7 @@ interface CatsApiService {
     ): List<Cat>
 }
 
+// From: https://api-ninjas.com/api/cats
 data class Cat(
     val length: String,
     val origin: String,

@@ -24,10 +24,10 @@ class MainActivity : ComponentActivity() {
 //                BankHistoryScreen()
 
                 // Lecture 5
-                TickerScreen()
+//                TickerScreen()
 
                 // Lecture 6
-//                CatScreen()
+                CatScreen()
             }
         }
     }

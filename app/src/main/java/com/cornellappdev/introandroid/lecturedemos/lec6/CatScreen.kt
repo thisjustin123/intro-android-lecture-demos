@@ -63,7 +63,8 @@ fun CatScreen(
         Button(
             onClick = {
                 catViewModel.onSubmit()
-            }
+            },
+            enabled = uiState.buttonEnabled
         ) {
             Text(
                 text = "Submit",

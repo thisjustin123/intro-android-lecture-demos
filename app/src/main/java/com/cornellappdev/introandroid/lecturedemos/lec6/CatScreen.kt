@@ -55,7 +55,10 @@ fun CatScreen(
         TextField(
             value = uiState.query,
             onValueChange = { catViewModel.onQueryChange(it) },
-            modifier = Modifier.fillMaxWidth(.6f)
+            modifier = Modifier.fillMaxWidth(.6f),
+            placeholder = {
+                Text("Enter cat name here...")
+            }
         )
 
         Spacer(Modifier.weight(.1f))

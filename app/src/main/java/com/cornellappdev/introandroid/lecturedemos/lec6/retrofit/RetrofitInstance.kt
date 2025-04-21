@@ -6,6 +6,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject
 import javax.inject.Singleton
 
+// Note: This is more or less the exact same for every networking call.
+//  You just need to chance the URL and can add some optional parameters if you need to.
+//  Feel free to reference for the rest of the course!
 @Singleton
 class RetrofitInstance @Inject constructor() {
 

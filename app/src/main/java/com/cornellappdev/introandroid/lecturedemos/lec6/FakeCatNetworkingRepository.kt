@@ -12,7 +12,6 @@ class FakeCatNetworkingRepository @Inject constructor() {
     private val fakeCat = Cat(
 //        length = "12 to 16 inches",
 //        origin = "Southeast Asia",
-//        imageLink = "https://api-ninjas.com/images/cats/abyssinian.jpg",
 //        familyFriendly = 3,
 //        shedding = 3,
 //        generalHealth = 2,
@@ -25,6 +24,7 @@ class FakeCatNetworkingRepository @Inject constructor() {
 //        maxWeight = 10,
 //        minLifeExpectancy = 9,
 //        maxLifeExpectancy = 15,
+        imageLink = "https://api-ninjas.com/images/cats/abyssinian.jpg",
         name = "Abyssinian"
     )
 

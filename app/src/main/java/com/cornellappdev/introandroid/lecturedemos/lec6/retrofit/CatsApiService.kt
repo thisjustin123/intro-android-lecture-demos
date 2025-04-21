@@ -12,4 +12,5 @@ interface CatsApiService {
 
 data class Cat(
     val name: String,
+    val imageLink: String,
 )

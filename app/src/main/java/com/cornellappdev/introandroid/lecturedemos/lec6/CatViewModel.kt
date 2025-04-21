@@ -1,15 +1,12 @@
 package com.cornellappdev.introandroid.lecturedemos.lec6
 
-import android.util.Log
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.cornellappdev.introandroid.lecturedemos.lec6.retrofit.Cat
 import com.cornellappdev.introandroid.lecturedemos.lec6.retrofit.RetrofitInstance
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel

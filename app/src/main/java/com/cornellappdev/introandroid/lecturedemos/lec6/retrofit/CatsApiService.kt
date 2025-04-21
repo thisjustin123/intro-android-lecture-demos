@@ -9,3 +9,7 @@ package com.cornellappdev.introandroid.lecturedemos.lec6.retrofit
 interface CatsApiService {
 
 }
+
+data class Cat(
+    val name: String,
+)

@@ -10,21 +10,21 @@ import kotlin.random.Random
 class FakeCatNetworkingRepository @Inject constructor() {
 
     private val fakeCat = Cat(
-//        length = "12 to 16 inches",
-//        origin = "Southeast Asia",
-//        imageLink = "https://api-ninjas.com/images/cats/abyssinian.jpg",
-//        familyFriendly = 3,
-//        shedding = 3,
-//        generalHealth = 2,
-//        playfulness = 5,
-//        childrenFriendly = 5,
-//        grooming = 3,
-//        intelligence = 5,
-//        otherPetsFriendly = 5,
-//        minWeight = 6,
-//        maxWeight = 10,
-//        minLifeExpectancy = 9,
-//        maxLifeExpectancy = 15,
+        length = "12 to 16 inches",
+        origin = "Southeast Asia",
+        imageLink = "https://api-ninjas.com/images/cats/abyssinian.jpg",
+        familyFriendly = 3,
+        shedding = 3,
+        generalHealth = 2,
+        playfulness = 5,
+        childrenFriendly = 5,
+        grooming = 3,
+        intelligence = 5,
+        otherPetsFriendly = 5,
+        minWeight = 6,
+        maxWeight = 10,
+        minLifeExpectancy = 9,
+        maxLifeExpectancy = 15,
         name = "Abyssinian"
     )
 
